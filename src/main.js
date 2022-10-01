@@ -6,6 +6,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App.vue'
 
+
 const app = createApp(App)
 app.use(BootstrapVue3)
 app.use(VueAxios, axios)
