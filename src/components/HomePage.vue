@@ -6,7 +6,6 @@
                  :on-cancel="onCancel"
                  :is-full-page="fullPage"/>
     </div>
-    <!-- <MyLoadingAnimation /> -->
 
     <!-- banner -->
     <b-container class="home-page m-0 p-0" fluid>
@@ -51,7 +50,6 @@ import MyTab from './tabs/tab.vue'
 import MyAccordion from './accordion/accordion.vue'
 import AboutMe from './aboutMe/about.vue'
 import MyFooter from './footer.vue'
-// import MyLoadingAnimation from './loadAnimation/loadingAnimation'
 
 // animation
 import AOS from 'aos';
@@ -73,7 +71,6 @@ export default {
         MyTab,
         MyAccordion,
         MyFooter,
-        // MyLoadingAnimation
         Loading,
         AboutMe
     },
