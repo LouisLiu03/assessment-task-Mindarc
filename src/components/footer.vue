@@ -2,12 +2,10 @@
     <div class="footer text-center">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h1> Name: Louis </h1>
+                <div class="col-12 p-3 p-md-5">
+                    <h1 class="text-uppercase"> <b> thnak you</b> </h1>
                 </div>
-
             </div>
-
         </div>
     </div>
 </template>
@@ -19,7 +17,6 @@
 </script>
 <style>
     .footer {
-        margin-top: 5rem;
         background-color: #000;
         color: #fff;
     }
