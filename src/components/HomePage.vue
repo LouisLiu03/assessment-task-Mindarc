@@ -1,8 +1,12 @@
 <template>
+    <!-- loading -->
+    <MyLoadingAnimation />
+
+    <!-- banner -->
     <b-container class="home-page m-0 p-0" fluid>
-        <div class="position-relative">
+        <div class="position-relative" data-aos="fade-in" data-aos-offset="200" data-aos-delay="300" data-aos-duration="1000">
             <div class="background-cover"></div>
-            <b-img v-if="screenWidth > 576" src="https://via.placeholder.com/1920x650" fluid alt="Banner img"></b-img>
+            <b-img v-if="!is_smallscreen()" src="https://via.placeholder.com/1920x650" fluid alt="Banner img"></b-img>
             <b-img v-else src="https://via.placeholder.com/600x600" fluid alt="Banner img"></b-img>
             <div class="banner-text w-100">
                 <h1 class="color-white text-center">Hello Developer!</h1>
@@ -11,146 +15,114 @@
         </div>
     </b-container>
 
+    <!-- cards -->
+    <MyCard />
 
-    <b-container class="bv-example-row mt-5 text-center">
-        <b-row>
-            <b-card-group deck>
-                <b-card img-src="https://via.placeholder.com/400x300" img-alt="Image" tag="article" class="mb-2 p-4">
-                    <b-card-text class="mt-3 mb-3 card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. At similique accusantium iusto, unde a
-                        quos consequatur fugiat! Sapiente nulla totam sit earum numquam explicabo consequatur,
-                        perspiciatis eveniet, quod placeat suscipit?
-                    </b-card-text>
+    
+    <!-- accordion / tabs -->
+    <b-container class="mt-5">
+        
+        <h1 class="mb-3"> Exercise 2</h1>
+        <!-- Tabs -->
+        <div class="desktop"  v-if="!is_smallscreen()">
+            <MyTab />   
+        </div>
 
-                    <template #footer>
-                        <b-button href="#" class="card-btn" pill>READ MORE</b-button>
-                    </template>
-                </b-card>
-
-                <b-card img-src="https://via.placeholder.com/400x300" img-alt="Image" tag="article" class="mb-2 p-4">
-                    <b-card-text class="mt-3 mb-3 card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. At similique accusantium iusto, unde a
-                        quos consequatur fugiat! Sapiente nulla totam sit earum
-                    </b-card-text>
-
-                    <template #footer>
-                        <b-button href="#" class="card-btn" pill>READ MORE</b-button>
-                    </template>
-                </b-card>
-
-                <b-card img-src="https://via.placeholder.com/400x300" img-alt="Image" tag="article" class="mb-2 p-4">
-                    <b-card-text class="mt-3 mb-3 card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. At similique accusantium iusto, unde a
-                        quos consequatur fugiat! Sapiente nulla totam sit earum numquam explicabo consequatur,
-                        perspiciatis eveniet
-                    </b-card-text>
-
-                    <template #footer>
-                        <b-button href="#" class="card-btn" pill>READ MORE</b-button>
-                    </template>
-                </b-card>
-
-            </b-card-group>
-
-        </b-row>
+        <!-- Accordion -->
+        <div class="mobile" v-else>
+            <MyAccordion />
+        </div>
     </b-container>
 
-    <b-container>
-        <b-card >
-            <b-tabs content-class="mt-3" fill>
-                <b-tab title="First" active><p>I'm the first tab</p></b-tab>
-                <b-tab title="Second"><p>I'm the second tab</p></b-tab>
-                <b-tab title="Very, very long title"><p>I'm the tab with the very, very long title</p></b-tab>
-                <b-tab title="Disabled" disabled><p>I'm a disabled tab!</p></b-tab>
-            </b-tabs>
-        </b-card>
-
-        <b-accordion >
-            <b-accordion-item title="Accordion Item #1" visible>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam nobis cupiditate nesciunt possimus rem velit ratione placeat eligendi autem suscipit, cum officiis. Expedita suscipit placeat, facere assumenda ipsum sequi nemo!
-            </b-accordion-item>
-            <b-accordion-item title="Accordion Item #2">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam nobis cupiditate nesciunt possimus rem velit ratione placeat eligendi autem suscipit, cum officiis. Expedita suscipit placeat, facere assumenda ipsum sequi nemo!
-            </b-accordion-item>
-            <b-accordion-item title="Accordion Item #3">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam nobis cupiditate nesciunt possimus rem velit ratione placeat eligendi autem suscipit, cum officiis. Expedita suscipit placeat, facere assumenda ipsum sequi nemo!
-            </b-accordion-item>
-        </b-accordion>
-
-
-
-    </b-container>
+    <MyFooter />
 
 </template>
 
 <script>
+import MyCard from './cards/card.vue'
+import MyTab from './tabs/tab.vue'
+import MyAccordion from './accordion/accordion.vue'
+import MyFooter from './footer.vue'
+import MyLoadingAnimation from './loadAnimation/loadingAnimation.vue';
+
+// animation
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+// init AOS
+AOS.init();
+
 export default {
     name: 'HomePage',
     props: {
 
     },
+    components:{
+        MyCard,
+        MyTab,
+        MyAccordion,
+        MyFooter,
+        MyLoadingAnimation
+    },
     data() {
         return {
             screenWidth: null,
-            is_smallscreen: false,
+            smallscreen: null,
+            jsonData: [],
         }
     },
-    
+    computed: {},
+    setup() {},
     methods: {
-        // 判断移动端还是pc端 determining Mobile or PC 
+        // determining Mobile or PC 
         // isMobile method
         isMobile() {
             let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
             return flag;
         },
-        getData() {
-            let api = './data/data.json'
-            this.axios.get(api).then((response) => {
-                console.log(response.data)
-            })
-        }
+        is_smallscreen() {
+            return this.smallscreen;
+        },
+        firstAccordionClick() {
+            let firstAccordion = document.getElementById('accordion-btn-0');
+            firstAccordion.click();
+        },
 
     },
     mounted() {
-        if (this.isMobile()) {
-            console.log('Mobile');
-        } else {
-            console.log('PC');
-        }
-
-        
-        const that = this;
         // get window width
+        const that = this;
         window.onload = () => {
             return (() => {
                 window.screenWidth = document.body.clientWidth;
                 that.screenWidth = window.screenWidth;
+                this.is_smallscreen();
+                this.firstAccordionClick();
             })();
         }
+
         // get window width when resize
         window.addEventListener("resize", function () {
             return (() => {
                 window.screenWidth = document.body.clientWidth;
                 that.screenWidth = window.screenWidth;
+                this.firstAccordionClick();
             })();
         });
     },
     watch: {
         screenWidth: {
             handler: function (val) {
-                if (val < 900) {
-                    console.log(val + "小於900")
-                    console.log(is_smallscreen)
-                    
+                if (val < 576) {
+                    // console.log(val + "小於900")
+                    this.smallscreen = true;
                 } else {
-                    console.log(val + "大於900")
-                    console.log(is_smallscreen)
+                    // console.log(val + "大於900")
+                    this.smallscreen = false;
                 }
             },
             immediate: true
         }
-
-
     },
 }
 </script>
@@ -187,26 +159,6 @@ export default {
     letter-spacing: 1px;
 }
 
-.card {
-    box-shadow: 0 0 10px 0px #ccc;
-}
-
-.card-deck {
-    gap: 2.5rem;
-}
-
-.card-body {
-    padding: 0;
-}
-
-.card-btn {
-    background-color: transparent;
-    border: 3px solid #000;
-    color: #000;
-    font-weight: 700;
-}
-
-
 /* mobile style */
 @media (max-width: 576px) {
     .home-page .banner-text h1 {
@@ -218,4 +170,5 @@ export default {
         letter-spacing: 1px;
     }
 }
+
 </style>
