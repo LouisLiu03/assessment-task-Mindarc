@@ -40,6 +40,7 @@
         </div>
     </b-container>
 
+    <AboutMe />
     <MyFooter />
 
 </template>
@@ -48,6 +49,7 @@
 import MyCard from './cards/card.vue'
 import MyTab from './tabs/tab.vue'
 import MyAccordion from './accordion/accordion.vue'
+import AboutMe from './aboutMe/about.vue'
 import MyFooter from './footer.vue'
 // import MyLoadingAnimation from './loadAnimation/loadingAnimation'
 
@@ -72,7 +74,8 @@ export default {
         MyAccordion,
         MyFooter,
         // MyLoadingAnimation
-        Loading
+        Loading,
+        AboutMe
     },
     data() {
         return {
