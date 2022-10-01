@@ -55,12 +55,14 @@ export default {
 </script>
 
 <style>
-.btn .btn-info {
-    background-color: #f00 !important;
+.btn.btn-info {
+    background-color: #31b368 !important;
+    border: none;
 }
 
-.btn .btn-info .collapsed {
-    background-color: #ccc !important;
+.btn.btn-info.collapsed {
+    background-color: #eee !important;
+    border: none;
 }
 
 .v-enter-active,
