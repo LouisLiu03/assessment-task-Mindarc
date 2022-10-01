@@ -1,4 +1,4 @@
-# my-project
+# my-Exercise on MindArc
 
 ## Project setup
 ```
@@ -15,10 +15,22 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+### reference
+* AOS scrolling animation 
+https://github.com/michalsnik/aos#easing-functions
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* bootstrap-vue-3
+https://cdmoro.github.io/bootstrap-vue-3/
+
+
+
+
+### Explain why the result of ('b' + 'a' + + 'a' + 'a').toLowerCase() is banana
++'a' resolves to NaN ("Not a Number") because it coerces a string to a number, while the character a cannot be parsed as a number.
+So adding NaN to "ba" turns NaN into the string "NaN" due to type conversion, gives baNaN. And then there is an a behind, giving baNaNa.
+
+
+
+
+
+
