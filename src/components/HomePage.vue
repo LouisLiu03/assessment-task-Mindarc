@@ -1,10 +1,16 @@
 <template>
     <!-- loading -->
-    <MyLoadingAnimation />
+    <div class="vld-parent">
+        <loading v-model:active="isLoading"
+                 :can-cancel="true"
+                 :on-cancel="onCancel"
+                 :is-full-page="fullPage"/>
+    </div>
+    <!-- <MyLoadingAnimation /> -->
 
     <!-- banner -->
     <b-container class="home-page m-0 p-0" fluid>
-        <div class="position-relative" data-aos="fade-in" data-aos-offset="200" data-aos-delay="300" data-aos-duration="1000">
+        <div class="position-relative" data-aos="fade-in" data-aos-offset="200" data-aos-delay="800" data-aos-duration="1000">
             <div class="background-cover"></div>
             <b-img v-if="!is_smallscreen()" src="https://via.placeholder.com/1920x650" fluid alt="Banner img"></b-img>
             <b-img v-else src="https://via.placeholder.com/600x600" fluid alt="Banner img"></b-img>
@@ -43,11 +49,14 @@ import MyCard from './cards/card.vue'
 import MyTab from './tabs/tab.vue'
 import MyAccordion from './accordion/accordion.vue'
 import MyFooter from './footer.vue'
-import MyLoadingAnimation from './loadAnimation/loadingAnimation.vue';
+// import MyLoadingAnimation from './loadAnimation/loadingAnimation'
 
 // animation
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 // init AOS
 AOS.init();
@@ -62,13 +71,16 @@ export default {
         MyTab,
         MyAccordion,
         MyFooter,
-        MyLoadingAnimation
+        // MyLoadingAnimation
+        Loading
     },
     data() {
         return {
             screenWidth: null,
             smallscreen: null,
             jsonData: [],
+            isLoading: false,
+            fullPage: true
         }
     },
     computed: {},
@@ -87,6 +99,16 @@ export default {
             let firstAccordion = document.getElementById('accordion-btn-0');
             firstAccordion.click();
         },
+        doAjax() {
+            this.isLoading = true;
+            // simulate AJAX
+            setTimeout(() => {
+                this.isLoading = false
+            }, 800)
+        },
+        onCancel() {
+            console.log('User cancelled the loader.')
+        }
 
     },
     mounted() {
@@ -96,6 +118,7 @@ export default {
             return (() => {
                 window.screenWidth = document.body.clientWidth;
                 that.screenWidth = window.screenWidth;
+                this.doAjax()
                 this.is_smallscreen();
                 this.firstAccordionClick();
             })();
