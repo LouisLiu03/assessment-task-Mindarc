@@ -22,6 +22,10 @@ https://github.com/michalsnik/aos#easing-functions
 * bootstrap-vue-3
 https://cdmoro.github.io/bootstrap-vue-3/
 
+* sweetalert2
+https://www.npmjs.com/package/vue-sweetalert2
+https://sweetalert2.github.io/#download
+
 
 
 
