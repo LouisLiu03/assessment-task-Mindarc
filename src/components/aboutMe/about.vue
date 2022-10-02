@@ -21,6 +21,7 @@
 </template>
 
 <script>
+    
 export default {
     name: 'AboutMe',
 
@@ -28,6 +29,9 @@ export default {
 </script>
 
 <style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 .bgc-black {
     background-color: #000;
 }
@@ -37,6 +41,7 @@ export default {
 }
 
 h1 {
+    font-family: 'Fredoka One', cursive;
     font-size: 4rem;
 }
 
