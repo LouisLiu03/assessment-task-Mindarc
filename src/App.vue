@@ -1,4 +1,4 @@
-! 
+
 <template>
   <HomePage />
 </template>
@@ -17,6 +17,12 @@ export default {
 
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+  
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+  }
+
   #app {
     font-size: 1.3rem;
   }
@@ -28,6 +34,6 @@ export default {
   .card-footer {
         border: none;
         background-color: transparent;
-    }
+  }
 
 </style>

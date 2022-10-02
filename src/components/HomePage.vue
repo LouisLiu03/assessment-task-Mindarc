@@ -6,7 +6,7 @@
                  :on-cancel="onCancel"
                  :is-full-page="fullPage"/>
     </div>
-
+    
     <!-- banner -->
     <b-container class="home-page m-0 p-0" fluid>
         <div class="position-relative" data-aos="fade-in" data-aos-offset="200" data-aos-delay="800" data-aos-duration="1000">
@@ -14,7 +14,7 @@
             <b-img v-if="!is_smallscreen()" src="https://via.placeholder.com/1920x650" fluid alt="Banner img"></b-img>
             <b-img v-else src="https://via.placeholder.com/600x600" fluid alt="Banner img"></b-img>
             <div class="banner-text w-100">
-                <h1 class="color-white text-center">Hello Developer!</h1>
+                <h1 class="color-white text-center ">Hello Developer!</h1>
                 <p class="color-white text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit </p>
             </div>
         </div>
@@ -57,6 +57,7 @@ import 'aos/dist/aos.css';
 
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
+
 
 // init AOS
 AOS.init();
@@ -108,7 +109,7 @@ export default {
         },
         onCancel() {
             console.log('User cancelled the loader.')
-        }
+        },
 
     },
     mounted() {

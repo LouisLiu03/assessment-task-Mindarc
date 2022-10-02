@@ -12,7 +12,7 @@
                         </b-card-text>
     
                         <template #footer>
-                            <b-button href="#" class="card-btn" pill>READ MORE</b-button>
+                            <b-button class="card-btn" pill @click="showAlert">READ MORE</b-button>
                         </template>
                     </b-card>
     
@@ -24,7 +24,7 @@
                         </b-card-text>
     
                         <template #footer>
-                            <b-button href="#" class="card-btn" pill>READ MORE</b-button>
+                            <b-button class="card-btn" pill @click="showAlert2">READ MORE</b-button>
                         </template>
                     </b-card>
     
@@ -37,7 +37,7 @@
                         </b-card-text>
     
                         <template #footer>
-                            <b-button href="#" class="card-btn" pill>READ MORE</b-button>
+                            <b-button class="card-btn" pill @click="showAlert3">READ MORE</b-button>
                         </template>
                     </b-card>
                 </b-card-group>
@@ -51,6 +51,72 @@
 export default {
     name: 'MyCard',
     props: {
+    },
+    methods: {
+        showAlert() {
+            // Use sweetalert2
+            this.$swal.fire({
+                // position: 'top',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: true,
+                // timer: 1500
+            });
+        },
+        showAlert2() {
+            this.$swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#02a687',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            })
+            .then((result) => {
+            if (result.isConfirmed) {
+                this.$swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+            }
+            })
+        },
+        showAlert3() {
+            this.$swal.fire({
+            title: 'Submit your Github username',
+            input: 'text',
+            inputAttributes: {
+                autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Look up',
+            showLoaderOnConfirm: true,
+            preConfirm: (login) => {
+                return fetch(`//api.github.com/users/${login}`)
+                .then(response => {
+                    if (!response.ok) {
+                    throw new Error(response.statusText)
+                    }
+                    return response.json()
+                })
+                .catch(error => {
+                    this.$swal.showValidationMessage(
+                    `Request failed: ${error}`
+                    )
+                })
+            },
+            allowOutsideClick: () => !this.$swal.isLoading()
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.$swal.fire({
+                title: `${result.value.login}'s avatar`,
+                imageUrl: result.value.avatar_url
+                })
+            }
+            })
+        }
     },
 }
 </script>
