@@ -6,7 +6,7 @@
                  :on-cancel="onCancel"
                  :is-full-page="fullPage"/>
     </div>
-    
+    <MyNavbar />
     <!-- banner -->
     <b-container class="home-page m-0 p-0" fluid>
         <div class="position-relative" data-aos="fade-in" data-aos-offset="200" data-aos-delay="800" data-aos-duration="1000">
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import MyNavbar from './navbars/navbar.vue'
 import MyCard from './cards/card.vue'
 import MyTab from './tabs/tab.vue'
 import MyAccordion from './accordion/accordion.vue'
@@ -73,7 +74,8 @@ export default {
         MyAccordion,
         MyFooter,
         Loading,
-        AboutMe
+        AboutMe,
+        MyNavbar
     },
     data() {
         return {
@@ -130,7 +132,7 @@ export default {
             return (() => {
                 window.screenWidth = document.body.clientWidth;
                 that.screenWidth = window.screenWidth;
-                this.firstAccordionClick();
+                that.firstAccordionClick();
             })();
         });
     },

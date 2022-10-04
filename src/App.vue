@@ -25,6 +25,7 @@ export default {
 
   #app {
     font-size: 1.3rem;
+    margin-top: 63px;
   }
 
   .btn {
@@ -34,6 +35,12 @@ export default {
   .card-footer {
         border: none;
         background-color: transparent;
+  }
+
+  @media (max-width:992px) {
+    #app {
+      margin-top: 56px;
+    }
   }
 
 </style>
