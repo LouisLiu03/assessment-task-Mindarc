@@ -102,13 +102,8 @@ export default {
             return this.smallscreen;
         },
         firstAccordionClick() {
-            console.log('click1');
-            if(this.hasClicked === true) {
-                console.log('click2');
-                let firstAccordion = document.getElementById('accordion-btn-0');
-                firstAccordion.click();
-            }
-            return
+            let firstAccordion = document.getElementById('accordion-btn-0');
+            firstAccordion.click();
         },
         doAjax() {
             this.isLoading = true;
@@ -141,7 +136,6 @@ export default {
             return (() => {
                 window.screenWidth = document.body.clientWidth;
                 that.screenWidth = window.screenWidth;
-                that.firstAccordionClick();
             })();
         });
     },
