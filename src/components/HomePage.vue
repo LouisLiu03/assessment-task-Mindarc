@@ -6,10 +6,13 @@
                  :on-cancel="onCancel"
                  :is-full-page="fullPage"/>
     </div>
+
     <MyNavbar />
+    
     <!-- banner -->
     <b-container class="home-page m-0 p-0" fluid>
-        <div class="position-relative" data-aos="fade-in" data-aos-offset="200" data-aos-delay="800" data-aos-duration="1000">
+        <!-- <div class="position-relative" data-aos="fade-in" data-aos-offset="200" data-aos-delay="800" data-aos-duration="1000"> -->
+        <div class="position-relative">
             <div class="background-cover"></div>
             <b-img v-if="!is_smallscreen()" src="https://via.placeholder.com/1920x650" fluid alt="Banner img"></b-img>
             <b-img v-else src="https://via.placeholder.com/600x600" fluid alt="Banner img"></b-img>
@@ -110,8 +113,9 @@ export default {
             }, 800)
         },
         onCancel() {
-            console.log('User cancelled the loader.')
+            // console.log('User cancelled the loader.')
         },
+        
 
     },
     mounted() {
@@ -129,17 +133,20 @@ export default {
 
         // get window width when resize
         window.addEventListener("resize", function () {
+            if(this.is_smallscreen){
+                console.log('gg');
+            }
             return (() => {
                 window.screenWidth = document.body.clientWidth;
                 that.screenWidth = window.screenWidth;
-                that.firstAccordionClick();
+                // this.firstAccordionClick();
             })();
         });
     },
     watch: {
         screenWidth: {
             handler: function (val) {
-                if (val < 576) {
+                if (val < 768) {
                     // console.log(val + "小於900")
                     this.smallscreen = true;
                 } else {
@@ -192,8 +199,9 @@ export default {
     }
 
     .home-page .banner-text p {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         letter-spacing: 1px;
+        padding: 1rem;
     }
 }
 

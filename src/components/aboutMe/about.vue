@@ -1,12 +1,14 @@
 <template>
-    <section class="about bgc-black color-white">
-        <div class="container mt-5 mb-3 pb-3">
-            <div class="row">
+    <div class="about bgc-black color-white">
+        <div class="container mt-5 pb-3">
+            <div class="row" data-aos="fade-in" data-aos-offset="100" data-aos-delay="100" data-aos-duration="1000">
                 <div class="col-12"><h1 class="text-uppercase text-center m-5">who am i </h1></div>
-                <div class="col-12 col-md-6" data-aos="fade-right" data-aos-offset="100" data-aos-delay="100" data-aos-duration="1000">
+                <!-- <div class="col-12 col-md-6" data-aos="fade-right" data-aos-offset="100" data-aos-delay="100" data-aos-duration="1000"> -->
+                <div class="col-12 col-md-6">
                     <img src="../../assets/img-1.jpg" alt="" width="100%">
                 </div>
-                <div class="col-12 col-md-6" data-aos="fade-left" data-aos-offset="100" data-aos-delay="100" data-aos-duration="1000">
+                <!-- <div class="col-12 col-md-6" data-aos="fade-left" data-aos-offset="100" data-aos-delay="100" data-aos-duration="1000"> -->
+                <div class="col-12 col-md-6">
                     <p class="pt-5 pt-sm-0"> My name is <b>Louis</b> </p>
                     <p> Prudent on detail, responsible on job,
                         never give up, well teamwork, 
@@ -17,7 +19,7 @@
             
         </div>
 
-    </section>
+    </div>
 </template>
 
 <script>

@@ -36,6 +36,7 @@ export default {
     data() {
         return {
             jsonData: [],
+            
         }
     },
     methods: {
@@ -44,7 +45,7 @@ export default {
             axios.get(api)
                 .then((response) => {
                     this.jsonData = response.data
-                    console.log(response.data)
+                    // console.log(response.data)
                 })
         },
     },
