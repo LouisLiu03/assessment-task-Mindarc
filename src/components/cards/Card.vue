@@ -5,7 +5,7 @@
                 <b-col md=6 lg="4">
                     <b-card-group deck>
                         <b-card img-src="https://via.placeholder.com/400x300" img-alt="Image" tag="article"
-                            class="mb-2 p-3 p-sm-2 p-lg-4">
+                            class="mb-2 p-4 p-sm-2 p-lg-4">
                             <b-card-text class="mt-3 mb-3 card-text">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. At similique accusantium iusto,
                                 unde a quos consequatur fugiat! Sapiente nulla totam sit earum numquam explicabo consequatur,
@@ -21,7 +21,7 @@
                 <b-col md=6 lg="4">
                     <b-card-group deck>
                         <b-card img-src="https://via.placeholder.com/400x300" img-alt="Image" tag="article"
-                            class="mb-2 p-3 p-sm-2 p-lg-4">
+                            class="mb-2 p-4 p-sm-2 p-lg-4">
                             <b-card-text class="mt-3 mb-3 card-text">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. At similique accusantium iusto,
                                 unde a quos consequatur fugiat!
@@ -36,7 +36,7 @@
                 <b-col md=6 lg="4">
                     <b-card-group deck>
                         <b-card img-src="https://via.placeholder.com/400x300" img-alt="Image" tag="article"
-                            class="mb-2 p-3 p-sm-2 p-lg-4">
+                            class="mb-2 p-4 p-sm-2 p-lg-4">
                             <b-card-text class="mt-3 mb-3 card-text">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. At similique accusantium iusto,
                                 unde a quos consequatur fugiat! Sapiente nulla totam sit earum numquam explicabo consequatur,
@@ -143,13 +143,13 @@ export default {
 
 .my-card .card-body {
     padding: 0;
-    color: #6e7681;
+    color: #383838;
 }
 
 .my-card .card-btn {
     background-color: transparent;
-    border: 4px solid #0d1117;
-    color: #0d1117;
+    border: 4px solid #333333;
+    color: #333333;
     font-weight: 800;
     letter-spacing: 2px;
     padding: 0.7rem 1.5rem;
@@ -159,17 +159,22 @@ export default {
 @media (min-width: 992px) and (max-width: 1200px) {
     .my-card .card {
         min-height: 696px;
+        
     }
 }
 
 @media (max-width: 576px) {
+    .my-card {
+        padding: 0 1.5rem;
+    }
+
     .my-card .card {
         min-height: auto;
+    
     }
     .my-card .card-btn {
-        /* font-size: 1rem; */
+        font-size: 1.2rem;
         padding: 0.5rem 1.5rem;
-        width: 70%;
     }
 }
 </style>

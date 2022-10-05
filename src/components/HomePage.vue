@@ -4,7 +4,7 @@
         <loading v-model:active="isLoading"
                  :can-cancel="true"
                  :on-cancel="onCancel"
-                 :is-full-page="fullPage"/>
+                 :is-full-page="isFullPage"/>
     </div>
 
     <MyNavbar />
@@ -86,7 +86,7 @@ export default {
             smallscreen: null,
             jsonData: [],
             isLoading: false,
-            fullPage: true
+            isFullPage: true
         }
     },
     computed: {},
@@ -133,12 +133,14 @@ export default {
 
         // get window width when resize
         window.addEventListener("resize", function () {
-            if(this.is_smallscreen){
-                console.log('gg');
-            }
+            
             return (() => {
+                
                 window.screenWidth = document.body.clientWidth;
                 that.screenWidth = window.screenWidth;
+                if(this.is_smallscreen){
+                    console.log('gg');
+                }
                 // this.firstAccordionClick();
             })();
         });
@@ -169,7 +171,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .color-white {
@@ -184,24 +186,31 @@ export default {
 }
 
 .home-page .banner-text h1 {
-    font-size: 5.75rem;
+    font-size: 5rem;
+    letter-spacing: 5px;
+    font-weight: 700;
 }
 
 .home-page .banner-text p {
     font-size: 3rem;
     letter-spacing: 1px;
+    font-weight: 300;
 }
 
 /* mobile style */
 @media (max-width: 576px) {
+    .home-page .banner-text {
+        position: absolute;
+        top: 55%;
+    }
     .home-page .banner-text h1 {
-        font-size: 4rem;
+        font-size: 3rem;
     }
 
     .home-page .banner-text p {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         letter-spacing: 1px;
-        padding: 1rem;
+        /* padding: 0.5rem; */
     }
 }
 
