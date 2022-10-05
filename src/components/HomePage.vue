@@ -13,8 +13,8 @@
     <b-container class="home-page m-0 p-0" fluid>
         <div class="position-relative">
             <div class="background-cover"></div>
-            <b-img v-if="!is_smallscreen()" src="https://via.placeholder.com/1920x650" fluid alt="Banner img"></b-img>
-            <b-img v-else src="https://via.placeholder.com/600x600" fluid alt="Banner img" class="mobile-img"></b-img>
+            <b-img v-if="!is_smallscreen()" src="https://via.placeholder.com/1920x650" fluid alt="Banner img" class="banner-img desktop"></b-img>
+            <b-img v-else src="https://via.placeholder.com/600x600" fluid alt="Banner img" class="banner-img mobile"></b-img>
             <div class="banner-text w-100">
                 <h1 class="color-white text-center ">Hello Developer!</h1>
                 <p class="color-white text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit </p>
@@ -194,10 +194,20 @@ export default {
     font-weight: 300;
 }
 
-.mobile-img {
+.banner-img {
     width: 100%;
     object-fit: cover;
 }
+.banner-img.desktop {
+    max-height: 650px;
+    overflow: hidden;
+}
+
+.banner-img.mobile {
+    max-height: 600px;
+    overflow: hidden;
+}
+
 
 /* mobile style */
 @media (max-width: 576px) {

@@ -1,5 +1,5 @@
 <template>
-    <div data-aos="fade-up" data-aos-offset="200" data-aos-delay="700" data-aos-duration="1000">
+    <div data-aos="fade-up" data-aos-offset="100" data-aos-delay="300" data-aos-duration="1000">
         <b-container class="mt-5 mb-5 text-center my-card w-100">
             <b-row>
                 <b-col md=6 lg="4">
