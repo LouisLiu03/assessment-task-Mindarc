@@ -11,11 +11,10 @@
     
     <!-- banner -->
     <b-container class="home-page m-0 p-0" fluid>
-        <!-- <div class="position-relative" data-aos="fade-in" data-aos-offset="200" data-aos-delay="800" data-aos-duration="1000"> -->
         <div class="position-relative">
             <div class="background-cover"></div>
             <b-img v-if="!is_smallscreen()" src="https://via.placeholder.com/1920x650" fluid alt="Banner img"></b-img>
-            <b-img v-else src="https://via.placeholder.com/600x600" fluid alt="Banner img"></b-img>
+            <b-img v-else src="https://via.placeholder.com/600x600" fluid alt="Banner img" class="mobile-img"></b-img>
             <div class="banner-text w-100">
                 <h1 class="color-white text-center ">Hello Developer!</h1>
                 <p class="color-white text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit </p>
@@ -86,7 +85,8 @@ export default {
             smallscreen: null,
             jsonData: [],
             isLoading: false,
-            isFullPage: true
+            isFullPage: true,
+            hasClicked: false,
         }
     },
     computed: {},
@@ -102,8 +102,13 @@ export default {
             return this.smallscreen;
         },
         firstAccordionClick() {
-            let firstAccordion = document.getElementById('accordion-btn-0');
-            firstAccordion.click();
+            console.log('click1');
+            if(this.hasClicked === true) {
+                console.log('click2');
+                let firstAccordion = document.getElementById('accordion-btn-0');
+                firstAccordion.click();
+            }
+            return
         },
         doAjax() {
             this.isLoading = true;
@@ -125,23 +130,18 @@ export default {
             return (() => {
                 window.screenWidth = document.body.clientWidth;
                 that.screenWidth = window.screenWidth;
-                this.doAjax()
-                this.is_smallscreen();
-                this.firstAccordionClick();
+                that.doAjax()
+                that.is_smallscreen();
+                that.firstAccordionClick();
             })();
         }
 
         // get window width when resize
         window.addEventListener("resize", function () {
-            
             return (() => {
-                
                 window.screenWidth = document.body.clientWidth;
                 that.screenWidth = window.screenWidth;
-                if(this.is_smallscreen){
-                    console.log('gg');
-                }
-                // this.firstAccordionClick();
+                that.firstAccordionClick();
             })();
         });
     },
@@ -151,9 +151,12 @@ export default {
                 if (val < 768) {
                     // console.log(val + "小於900")
                     this.smallscreen = true;
+                    this.hasClicked = true;
+
                 } else {
                     // console.log(val + "大於900")
                     this.smallscreen = false;
+                    this.hasClicked = false;
                 }
             },
             immediate: true
@@ -197,6 +200,11 @@ export default {
     font-weight: 300;
 }
 
+.mobile-img {
+    width: 100%;
+    object-fit: cover;
+}
+
 /* mobile style */
 @media (max-width: 576px) {
     .home-page .banner-text {
@@ -210,7 +218,6 @@ export default {
     .home-page .banner-text p {
         font-size: 1.8rem;
         letter-spacing: 1px;
-        /* padding: 0.5rem; */
     }
 }
 
